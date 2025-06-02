@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spidy Beams</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-black text-white min-h-screen flex flex-col items-center justify-center" style="background-image: url('https://www.transparenttextures.com/patterns/stardust.png');">
+  <h1 class="text-4xl font-bold text-red-500 mb-6">🕷️ Welcome to Spidy Beams</h1>
+  <p class="mb-4 text-gray-300 text-center">A Discord server full of chaos, creativity, and chill</p>
+  <a href="https://discord.gg/6jKZVktP" target="_blank" class="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-full transition">Join the Server</a>
+
+  <div class="mt-10 bg-gray-900 p-6 rounded-lg w-96 text-center">
+    <h2 class="text-lg text-white mb-4">Shorten a Link</h2>
+    <input type="text" id="urlInput" placeholder="Enter URL" class="w-full p-2 mb-4 rounded bg-gray-800 text-white" />
+    <button onclick="shortenUrl()" class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded">Shorten</button>
+    <p class="mt-4 text-green-400" id="result"></p>
+  </div>
+
+  <script>
+    async function shortenUrl() {
+      const url = document.getElementById("urlInput").value;
+      const result = document.getElementById("result");
+
+      if (!url) {
+        result.textContent = "Bro enter a URL 💀";
+        return;
+      }
+
+      try {
+        const res = await fetch(`https://is.gd/create.php?format=simple&url=${encodeURIComponent(url)}`);
+        const shortUrl = await res.text();
+        result.innerHTML = `🔗 <a href="${shortUrl}" target="_blank">${shortUrl}</a>`;
+      } catch (err) {
+        result.textContent = "Something broke 💥";
+      }
+    }
+  </script>
+</body>
+</html>
