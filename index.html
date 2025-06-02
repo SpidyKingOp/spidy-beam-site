@@ -1,31 +1,18 @@
-<script>
-  async function shortenUrl() {
-    const url = document.getElementById("urlInput").value;
-    const result = document.getElementById("result");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spidy Beams</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-black text-white min-h-screen flex flex-col items-center justify-center p-6" style="background-image: url('https://www.transparenttextures.com/patterns/stardust.png');">
 
-    if (!url || !url.startsWith("http")) {
-      result.textContent = "❌ Please enter a valid URL that starts with http or https.";
-      result.style.color = "red";
-      return;
-    }
+  <h1 class="text-4xl font-bold text-red-500 mb-4">🕷️ Welcome to Spidy Beams</h1>
+  <p class="mb-4 text-gray-300 text-center">A Discord server full of chaos, creativity, and chill</p>
 
-    result.textContent = "⏳ Shortening...";
+  <a href="https://discord.gg/YOUR_INVITE_CODE" target="_blank" class="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-full transition">
+    Join the Server
+  </a>
 
-    try {
-      const res = await fetch(`https://is.gd/create.php?format=simple&url=${encodeURIComponent(url)}`);
-      const shortUrl = await res.text();
-
-      if (shortUrl.startsWith("Error")) {
-        result.textContent = "⚠️ is.gd didn't like the URL. Try another one.";
-        result.style.color = "orange";
-        return;
-      }
-
-      result.innerHTML = `✅ Shortened: <a href="${shortUrl}" target="_blank" class="underline text-green-400">${shortUrl}</a>`;
-      result.style.color = "green";
-    } catch (err) {
-      result.textContent = "💥 Something broke while shortening. Try again later.";
-      result.style.color = "red";
-    }
-  }
-</script>
+  <div class="mt-10 bg-gray-900 p-6 roun
